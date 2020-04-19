@@ -1,19 +1,19 @@
 [workstations]
-workstation.example.com
+workstation.local
 
 [nfs]
-registry.example.com
+registry.local
 
 [masters]
-master.example.com
+master.local
 
 [etcd]
-master.example.com
+master.local
 
 [nodes]
-master.example.com
-node1.example.com
-node2.example.com
+master.local
+node1.local
+node2.local
 
 [OSEv3:children]
 masters
@@ -23,7 +23,7 @@ nfs
 
 #Variables needed by the prepare_install.yml playbook.
 [nodes:vars]
-#registry_local=registry.example.com
+#registry_local=registry.local
 registry_local=registry.access.redhat.com
 use_overlay2_driver=true
 insecure_registry=false
@@ -49,7 +49,7 @@ openshift_master_htpasswd_users={'admin':'$apr1$Vd4/F6nT$xYB.UFGvcZeWPdMoAXSZJ1'
 os_firewall_use_firewalld=true
 openshift_master_api_port=443
 openshift_master_console_port=443
-openshift_master_default_subdomain=myapp.example.com
+openshift_master_default_subdomain=myapp.local
 
 
 #NFS is an unsupported configuration
@@ -76,7 +76,7 @@ openshift_hosted_etcd_storage_labels={'storage': 'etcd'}
 #Modifications Needed for a Disconnected Install
 oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 openshift_examples_modify_imagestreams=true
-#openshift_docker_additional_registries=registry.example.com
+#openshift_docker_additional_registries=registry.local
 openshift_docker_additional_registries=registry.access.redhat.com
 openshift_docker_blocked_registries=docker.io
 #openshift_docker_blocked_registries=registry.access.redhat.com,docker.io
@@ -90,8 +90,8 @@ ansible_service_broker_image_prefix=registry.access.redhat.com/openshift3/ose-
 ansible_service_broker_etcd_image_prefix=registry.access.redhat.com/rhel7/
 
 [nodes]
-master.example.com
-node1.example.com openshift_node_labels="{'region':'infra', 'node-role.kubernetes.io/compute':'true'}"
-node2.example.com openshift_node_labels="{'region':'infra', 'node-role.kubernetes.io/compute':'true'}"
+master.local
+node1.local openshift_node_labels="{'region':'infra', 'node-role.kubernetes.io/compute':'true'}"
+node2.local openshift_node_labels="{'region':'infra', 'node-role.kubernetes.io/compute':'true'}"
 
 
